@@ -6,6 +6,7 @@ import PubSub from 'pubsub-js'
 
 import './login.css'
 import PostAd from "../postAd/postAd";
+import {SIGN_IN_API_URL} from "../constant";
 
 
 export default class Login extends Component{
@@ -23,7 +24,8 @@ export default class Login extends Component{
         params.append("username",username)
         params.append("password",password)
 
-        const url = 'http://localhost:3000/user/login'
+        //const url = 'http://localhost:3000/user/login'
+        const url = SIGN_IN_API_URL
         const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded'} }
 
         Axios.post(url,params,config).

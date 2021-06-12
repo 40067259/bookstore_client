@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import Axios from 'axios'
 import '../login/login.css'
 
+import {POST_AD_API_URL} from "../constant";
+
 export default class PostAd extends Component{
     state = {
         isbn: null,
@@ -52,7 +54,8 @@ export default class PostAd extends Component{
         params.append("cover",image)
 
         const token = localStorage.getItem('myToken')
-        const url = 'http://localhost:3000/ad/postAD'
+        //const url = 'http://localhost:3000/ad/postAD'
+        const url = POST_AD_API_URL
         console.log('token from postAd----->',token)
         const config = { headers: { 'Content-Type': 'multipart/form-data','token':`${token}` } }
         Axios.post(url,params,config).
@@ -68,8 +71,8 @@ export default class PostAd extends Component{
 
     render () {
         const {isbn,itemName,price,stock,description,success,fail} = this.state
-        if(success) return <div style={{marginTop:300,display:"flex",justifyContent:"center",alignItems:"center"}}><h1 style={{fontFamily:"fantasy", color:"mediumpurple"}}>{success}</h1></div>
-        else if(fail) return <div style={{marginTop:300,display:"flex",justifyContent:"center",alignItems:"center"}}><h1 style={{fontFamily:"monospace", color:"mediumpurple"}}>Post failed</h1></div>
+        if(success) return <div style={{marginTop:300,display:"flex",justifyContent:"center",alignItems:"center"}}><h1 style={{fontFamily:"fantasy", color:"lawngreen"}}>{success}</h1></div>
+        else if(fail) return <div style={{marginTop:300,display:"flex",justifyContent:"center",alignItems:"center"}}><h1 style={{fontFamily:"monospace", color:"mediumpurple"}}>{fail}</h1></div>
         return (
             <div>
                 <br/><br/><br/>

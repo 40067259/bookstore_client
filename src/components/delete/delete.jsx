@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 import '../search/search.css'
 import '../search/new.css'
 import Axios from "axios";
+import {DELETE_AD_API_URL} from "../constant";
 
 export default class Delete extends Component{
 
@@ -15,7 +16,8 @@ export default class Delete extends Component{
 
     delete = () => {
         const id = this.input.value
-        const url = 'http://localhost:3000/ad/deleteAD/'+id
+        //const url = 'http://localhost:3000/ad/deleteAD/'+id
+        const url = DELETE_AD_API_URL+id
         const token = localStorage.getItem('myToken')
         console.log(token,'***********************')
         const config = { headers: {'token':`${token}` } }

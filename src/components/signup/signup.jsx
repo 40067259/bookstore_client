@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import './signup.css'
 import Axios from "axios";
 
+import {SIGN_UP_API_URL} from "../constant";
+
 export default class Signup extends Component{
     state = {
         username: null,
@@ -44,7 +46,6 @@ export default class Signup extends Component{
     handleSignUp = (e) => {
        const {password,username,email,status,phone} = this.state
         if(!password || !username || !status) return
-        console.log(password,username,status,email,phone)
         let params = new FormData()
         params.append("username",username)
         params.append("password",password)
@@ -56,7 +57,8 @@ export default class Signup extends Component{
 
         this.setState({password:null,username:null,status:'seller',email:null,phone:null})
 
-        const url = 'http://localhost:3000/user/register'
+       // const url = 'http://localhost:3000/user/register'
+        const url = SIGN_UP_API_URL
         const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
 
         console.log('I come from sign up')

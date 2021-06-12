@@ -1,0 +1,9 @@
+export const API_URL = 'http://restapibookstore-env.eba-5pkie2xx.us-east-2.elasticbeanstalk.com'
+export const SIGN_UP_API_URL = `${API_URL}/user/register`
+export const SIGN_IN_API_URL = `${API_URL}/user/login`
+export const GET_ALL_API_URL = `${API_URL}/ad/getAllAD`
+export const SIGN_OUT_API_URL = `${API_URL}/user/logout`
+export const POST_AD_API_URL = `${API_URL}/ad/postAD`
+export const GET_AD_API_URL = `${API_URL}/ad/get/`
+export const DELETE_AD_API_URL = `${API_URL}/ad/deleteAD/`
+export const SEARCH_AD_API_URL = `${API_URL}/ad/searchGoogleBook/`

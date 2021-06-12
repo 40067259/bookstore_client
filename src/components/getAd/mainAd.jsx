@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import Axios from 'axios'
 import PubSub from 'pubsub-js'
+
+import {GET_AD_API_URL} from "../constant";
 export default class MainAd extends Component{
 
     state = {
@@ -18,7 +20,8 @@ export default class MainAd extends Component{
                 books: null
             })
             this.btnDisable = true
-            const url = 'http://localhost:3000/ad/get/'+searchName
+            //const url = 'http://localhost:3000/ad/get/'+searchName
+            const url = GET_AD_API_URL+searchName
             const token = localStorage.getItem('myToken')
             const config = { headers: {'token':`${token}` } }
             Axios.get(url,config)

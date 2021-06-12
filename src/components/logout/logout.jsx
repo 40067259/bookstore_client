@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
 import Axios from 'axios'
-import SubPub from 'pubsub-js'
 import PubSub from "pubsub-js";
+
+import {SIGN_OUT_API_URL} from "../constant";
 
 export default class Logout extends Component{
     state = {
@@ -9,7 +10,7 @@ export default class Logout extends Component{
     }
 
     componentDidMount() {
-        const url = 'http://localhost:3000/user/logout'
+        const url = SIGN_OUT_API_URL
         const token = localStorage.getItem('myToken')
         console.log('token----->',token)
         const config = { headers: {'token':`${token}`}}

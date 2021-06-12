@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import Axios from 'axios'
 import PubSub from 'pubsub-js'
+
+import {SEARCH_AD_API_URL} from "../constant";
 export default class Main extends Component{
 
     state = {
@@ -16,7 +18,8 @@ export default class Main extends Component{
                 initView: false,
                 loading: true
             })
-            const url = 'http://localhost:3000/ad/searchGoogleBook/'+searchName
+            //const url = 'http://localhost:3000/ad/searchGoogleBook/'+searchName
+            const url = SEARCH_AD_API_URL+searchName
             const token = localStorage.getItem('myToken')
             console.log(token,'***********************')
             const config = { headers: {'token':`${token}` } }
@@ -60,7 +63,7 @@ export default class Main extends Component{
                 <div className="row">
                     {
                         books.map((book,index) => (
-                            <div className="card" key={index}>
+                            <div className="card" key={index} style={{height:"400px"}}>
                                 <img src={book.img} style={{borderRadius:0}}/>
                                 <p className="card-text" style={{color:"red",fontSize:"20px"}}><span style={{fontSize:20}}>Name</span>: {book.title}</p>
                                 <p className="card-text" style={{color:"yellow",fontSize:"10px"}}><span style={{fontSize:20}}>ISBN</span>: {book.isbn}</p>

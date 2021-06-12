@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import PubSub from 'pubsub-js'
+
 import './new.css'
+
 export default class Search extends Component{
 
     search = () =>{

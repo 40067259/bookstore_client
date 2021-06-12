@@ -2,37 +2,40 @@ import React,{Component} from 'react'
 import Axios from "axios";
 
 import './getAllAds.css'
+import {GET_ALL_API_URL} from "../constant";
 
 export default class GetAllAds extends Component{
     state = {
         users: [],
-        errorMsg: null
+        errorMsg: null,
+        load: true
     }
     componentDidMount() {
-        const url = 'http://localhost:3000/ad/getAllAD'
+        const url = GET_ALL_API_URL
         const token = localStorage.getItem('myToken')
         const config = { headers: {'token':`${token}` } }
         Axios.get(url,config)
             .then(response => {
                 const result = response.data
-                console.log(result,'--------------result -----------------')
                 if(result === '' || result == null && result == undefined)
-                    this.setState({errorMsg:'Sorry,User not authenticated or no ad'})
+                    this.setState({errorMsg:'Sorry,User not authenticated or no ad',load:false})
                 else{
                     const users = result.map(item => {
                         return {title: item.title,price: item.price, cover: item.cover,
-                            quantity:item.quantity,description:item.description}
+                            quantity:item.quantity,description:item.description,id:item.id}
                     })
-                    this.setState({users})
+                    this.setState({users,load:false})
                 }
             })
             .catch(error => {
-                this.setState({errorMsg:error.message})
+                this.setState({errorMsg:error.message,load:false})
             })
     }
 
     render () {
-        const{users,errorMsg} = this.state
+        const{users,errorMsg,load} = this.state
+        if(load) return <div style={{width:1100,height:500,float:'right',marginTop:200}}>
+            <h1 style={{color:'red',alignmentBaseline:'central',fontSize:40}}>Loading...</h1></div>
         if(errorMsg) return <div style={{width:1100,height:500,float:'right',marginTop:200}}>
             <h1 style={{color:'red',alignmentBaseline:'central',fontSize:40}}>{errorMsg}</h1></div>
         return (
@@ -45,7 +48,8 @@ export default class GetAllAds extends Component{
                                 <p className="card-text" style={{color:"red",fontSize:"40px"}}>Name: {user.title}</p>
                                 <p className="card-text" style={{color:"yellow",fontSize:"20px"}}>Price: {user.price}</p>
                                 <p className="card-text" style={{color:"green",fontSize:"20px"}}>Quantity: {user.quantity}</p>
-                                <p  style={{color:"purple",fontSize:"20px"}}>Des: {user.description}</p>
+                                <p className="card-text" style={{color:"pink",fontSize:"15px"}}>ID:{user.id}</p>
+                                <p className="card-text" style={{color:"purple",fontSize:"20px"}}>Des: {user.description}</p>
                             </div>
                         ))
                     }
