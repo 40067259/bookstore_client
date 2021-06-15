@@ -1,4 +1,4 @@
-export const API_URL = 'http://restapibookstore-env.eba-5pkie2xx.us-east-2.elasticbeanstalk.com'
+export const API_URL = 'http://ec2-18-217-230-94.us-east-2.compute.amazonaws.com/'
 export const SIGN_UP_API_URL = `${API_URL}/user/register`
 export const SIGN_IN_API_URL = `${API_URL}/user/login`
 export const GET_ALL_API_URL = `${API_URL}/ad/getAllAD`
